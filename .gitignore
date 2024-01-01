@@ -1,0 +1,4 @@
+**/.env
+**/appsettings.json
+authelia/users_database.yml
+torrenting/wg0.conf

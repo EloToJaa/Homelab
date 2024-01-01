@@ -1,0 +1,35 @@
+version: "3"
+services:
+  postgres:
+    image: postgres:15.4
+    container_name: postgres
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=authelia
+    volumes:
+      - ${VOLUMES_DIR}/postgres:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    restart: always
+    networks:
+      - proxy
+
+  postgres-tasker:
+    image: postgres:latest
+    container_name: postgres-tasker
+    environment:
+      - POSTGRES_USER=${TASKER_DB_USER}
+      - POSTGRES_PASSWORD=${TASKER_DB_PASSWORD}
+      - POSTGRES_DB=tasker
+    volumes:
+      - ${VOLUMES_DIR}/tasker-db:/var/lib/postgresql/data
+    ports:
+      - 4321:5432
+    restart: always
+    networks:
+      - proxy
+
+networks:
+  proxy:
+    external: true

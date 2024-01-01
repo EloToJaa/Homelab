@@ -1,0 +1,18 @@
+version: "3"
+services:
+  quizer-api:
+    image: ghcr.io/quizer-app/quizer:latest
+    container_name: quizer-api
+    volumes:
+      - ${DOCKER_DIR}/quizer/appsettings.json:/app/src/Quizer.Api/appsettings.Production.json
+    restart: unless-stopped
+    networks:
+      - proxy
+    labels:
+      traefik.enable: true
+      traefik.http.routers.quizer-api.entrypoints: https
+      traefik.http.routers.quizer-api.rule: Host(`api.local.${DOMAIN}`)
+
+networks:
+  proxy:
+    external: true

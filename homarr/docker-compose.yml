@@ -1,0 +1,23 @@
+version: "3"
+services:
+  homarr:
+    image: ghcr.io/ajnart/homarr:latest
+    container_name: homarr
+    volumes:
+      - ${VOLUMES_DIR}/homarr/configs:/app/data/configs
+      - ${VOLUMES_DIR}/homarr/icons:/app/public/icons
+      - ${VOLUMES_DIR}/homarr/data:/data
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - proxy
+    labels:
+      traefik.enable: true
+      traefik.http.routers.homarr.entryPoints: https
+      traefik.http.routers.homarr.rule: Host(`local.${DOMAIN}`)
+      traefik.http.routers.homarr.service: homarr
+      traefik.http.services.homarr.loadbalancer.server.port: 7575
+    restart: unless-stopped
+
+networks:
+  proxy:
+    external: true

@@ -1,0 +1,22 @@
+version: "3"
+services:
+  jellyseerr:
+    image: fallenbagel/jellyseerr:latest
+    container_name: jellyseerr
+    environment:
+      TZ: ${TZ}
+    volumes:
+      - ${VOLUMES_DIR}/jellyseerr:/app/config
+    restart: unless-stopped
+    networks:
+      - proxy
+    labels:
+      traefik.enable: true
+      traefik.http.routers.jellyseerr.entryPoints: https
+      traefik.http.routers.jellyseerr.rule: Host(`request.local.${DOMAIN}`, `request.${DOMAIN}`)
+      traefik.http.routers.jellyseerr.service: jellyseerr
+      traefik.http.services.jellyseerr.loadbalancer.server.port: 5055
+
+networks:
+  proxy:
+    external: true

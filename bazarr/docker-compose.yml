@@ -1,0 +1,23 @@
+version: "3"
+services:
+  bazarr:
+    image: ghcr.io/linuxserver/bazarr
+    container_name: bazarr
+    environment:
+      - PUID=${USER_UID}
+      - PGID=${USER_GID}
+      - TZ=${TZ}
+      - DOCKER_MODS=ghcr.io/gilbn/theme.park:bazarr
+    volumes:
+      - ${VOLUMES_DIR}/bazarr:/config
+      - ${MEDIA_DIR}:/media
+    restart: unless-stopped
+    networks:
+      - proxy
+    labels:
+      traefik.enable: true
+      traefik.http.routers.bazarr.entryPoints: https
+
+networks:
+  proxy:
+    external: true

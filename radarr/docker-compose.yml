@@ -1,0 +1,25 @@
+version: "3"
+services:
+  radarr:
+    image: ghcr.io/linuxserver/radarr
+    container_name: radarr
+    environment:
+      - PUID=${USER_UID}
+      - PGID=${USER_GID}
+      - TZ=${TZ}
+      - DOCKER_MODS=ghcr.io/gilbn/theme.park:radarr
+    volumes:
+      - ${VOLUMES_DIR}/radarr:/config
+      - ${MEDIA_DIR}:/media
+    restart: unless-stopped
+    networks:
+      proxy:
+        ipv4_address: 172.18.1.3
+    labels:
+      traefik.enable: true
+      traefik.http.routers.radarr.entryPoints: https
+      traefik.http.routers.radarr.rule: Host(`radarr.local.${DOMAIN}`)
+
+networks:
+  proxy:
+    external: true

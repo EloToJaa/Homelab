@@ -1,0 +1,77 @@
+version: "3"
+services:
+  qbittorrent:
+    container_name: qbittorrent
+    image: cr.hotio.dev/hotio/qbittorrent:latest
+    environment:
+      - PUID=${USER_UID}
+      - PGID=${USER_GID}
+      - UMASK=002
+      - TZ=${TZ}
+      - VPN_ENABLED=true
+      - VPN_LAN_NETWORK=${LOCAL_NETWORK}
+      - VPN_CONF=wg0
+      - VPN_IP_CHECK_DELAY=5
+      - VPN_ADDITIONAL_PORTS=9696/tcp,9117/tcp
+      - PRIVOXY_ENABLED=false
+    volumes:
+      - ${VOLUMES_DIR}/qbittorrent:/config
+      - ${DOCKER_DIR}/torrenting/wg0.conf:/config/wireguard/wg0.conf
+      - ${MEDIA_DIR}:/media
+    cap_add:
+      - NET_ADMIN
+    sysctls:
+      - net.ipv4.conf.all.src_valid_mark=1
+      - net.ipv6.conf.all.disable_ipv6=1
+    restart: always
+    networks:
+      proxy:
+        ipv4_address: 172.18.1.1
+    labels:
+      traefik.enable: true
+      traefik.http.routers.qbittorrent.entryPoints: https
+      traefik.http.routers.qbittorrent.rule: Host(`download.local.${DOMAIN}`)
+      traefik.http.routers.qbittorrent.service: qbittorrent
+      traefik.http.services.qbittorrent.loadbalancer.server.port: 8080
+
+      traefik.http.routers.prowlarr.entryPoints: https
+      traefik.http.routers.prowlarr.rule: Host(`prowlarr.local.${DOMAIN}`)
+      traefik.http.routers.prowlarr.service: prowlarr
+      traefik.http.services.prowlarr.loadbalancer.server.port: 9696
+
+      # traefik.http.routers.jackett.entryPoints: https
+      # traefik.http.routers.jackett.rule: Host(`jackett.local.${DOMAIN}`)
+      # traefik.http.routers.jackett.service: jackett
+      # traefik.http.services.jackett.loadbalancer.server.port: 9117
+
+  prowlarr:
+    image: lscr.io/linuxserver/prowlarr:latest
+    container_name: prowlarr
+    network_mode: "service:qbittorrent"
+    environment:
+      - PUID=${USER_UID}
+      - PGID=${USER_GID}
+      - TZ=${TZ}
+    volumes:
+      - ${VOLUMES_DIR}/prowlarr:/config
+    depends_on:
+      - qbittorrent
+    restart: always
+
+  # jackett:
+  #   image: lscr.io/linuxserver/jackett:latest
+  #   container_name: jackett
+  #   network_mode: "service:qbittorrent"
+  #   environment:
+  #     - PUID=${USER_UID}
+  #     - PGID=${USER_GID}
+  #     - TZ=${TZ}
+  #   volumes:
+  #     - ${VOLUMES_DIR}/jackett:/config
+  #   depends_on:
+  #     - qbittorrent
+  #   restart: always
+
+networks:
+  proxy:
+    external: true

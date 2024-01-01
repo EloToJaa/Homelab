@@ -1,0 +1,13 @@
+version: '3'
+services:
+  adminer:
+    image: adminer
+    container_name: adminer
+    volumes:
+      - ${DOCKER_DIR}/adminer/adminer.css:/var/www/html/adminer.css
+    networks:
+      - proxy
+
+networks:
+  proxy:
+    external: true

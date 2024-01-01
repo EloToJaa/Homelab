@@ -1,0 +1,24 @@
+version: "3"
+services:
+  readarr:
+    image: ghcr.io/linuxserver/readarr:nightly
+    container_name: readarr
+    environment:
+      - PUID=${USER_UID}
+      - PGID=${USER_GID}
+      - TZ=${TZ}
+    volumes:
+      - ${VOLUMES_DIR}/readarr:/config
+      - ${MEDIA_DIR}:/media
+    restart: unless-stopped
+    networks:
+      proxy:
+        ipv4_address: 172.18.1.4
+    labels:
+      traefik.enable: true
+      traefik.http.routers.readarr.entryPoints: https
+      traefik.http.routers.readarr.rule: Host(`readarr.local.${DOMAIN}`)
+
+networks:
+  proxy:
+    external: true

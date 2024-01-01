@@ -1,0 +1,25 @@
+version: "3"
+services:
+  sonarr:
+    image: ghcr.io/linuxserver/sonarr:develop
+    container_name: sonarr
+    environment:
+      - PUID=${USER_UID}
+      - PGID=${USER_GID}
+      - TZ=${TZ}
+      - DOCKER_MODS=ghcr.io/gilbn/theme.park:sonarr
+    volumes:
+      - ${VOLUMES_DIR}/sonarr:/config
+      - ${MEDIA_DIR}:/media
+    restart: unless-stopped
+    networks:
+      proxy:
+        ipv4_address: 172.18.1.2
+    labels:
+      traefik.enable: true
+      traefik.http.routers.sonarr.entryPoints: https
+      traefik.http.routers.sonarr.rule: Host(`sonarr.local.${DOMAIN}`)
+
+networks:
+  proxy:
+    external: true
