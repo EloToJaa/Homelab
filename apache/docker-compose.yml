@@ -1,7 +1,7 @@
 version: "3"
 services:
   web:
-    image: httpd
+    image: httpd:latest
     container_name: apache
     volumes:
       - ${DATA_DIR}/Website/:/usr/local/apache2/htdocs/
