@@ -4,7 +4,7 @@ services:
     image: ghcr.io/quizer-app/quizer:latest
     container_name: quizer-api
     volumes:
-      - ${DOCKER_DIR}/quizer/appsettings.json:/app/src/Quizer.Api/appsettings.Production.json
+      - ${DOCKER_DIR}/quizer/appsettings.json:/app/appsettings.Production.json
     restart: unless-stopped
     networks:
       - proxy
