@@ -2,7 +2,7 @@ version: "3"
 services:
   qbittorrent:
     container_name: qbittorrent
-    image: cr.hotio.dev/hotio/qbittorrent:latest
+    image: ghcr.io/hotio/qbittorrent:latest
     environment:
       - PUID=${USER_UID}
       - PGID=${USER_GID}
