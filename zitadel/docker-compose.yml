@@ -2,22 +2,27 @@ version: '3.8'
 
 services:
   zitadel:
-    image: ghcr.io/zitadel/zitadel:latest
+    image: ghcr.io/zitadel/zitadel:stable
     container_name: zitadel
-    command: start-from-init --masterkey "${ZITADEL_MASTERKEY}" --tlsMode disabled --config /config/config.yml
+    command: start-from-init --config /zitadel-config.yml --config /zitadel-secrets.yml --steps /zitadel-init-steps.yml --masterkey "${ZITADEL_MASTERKEY}" --tlsMode external
     environment:
-      - ZITADEL_DATABASE_POSTGRES_HOST=postgres
-      - ZITADEL_DATABASE_POSTGRES_PORT=5432
-      - ZITADEL_DATABASE_POSTGRES_DATABASE=zitadel
-      - ZITADEL_DATABASE_POSTGRES_USER_USERNAME=${POSTGRES_USER}
-      - ZITADEL_DATABASE_POSTGRES_USER_PASSWORD=${POSTGRES_PASSWORD}
-      - ZITADEL_DATABASE_POSTGRES_USER_SSL_MODE=disable
-      - ZITADEL_DATABASE_POSTGRES_ADMIN_USERNAME=${POSTGRES_USER}
-      - ZITADEL_DATABASE_POSTGRES_ADMIN_PASSWORD=${POSTGRES_PASSWORD}
-      - ZITADEL_DATABASE_POSTGRES_ADMIN_SSL_MODE=disable
-      - ZITADEL_EXTERNALSECURE=false
+      - ZITADEL_FIRSTINSTANCE_ORG_HUMAN_USERNAME=Admin1!@elotoja.com
+      - ZITADEL_FIRSTINSTANCE_ORG_HUMAN_PASSWORD=Password1!
+      # - ZITADEL_DATABASE_POSTGRES_HOST=postgres
+      # - ZITADEL_DATABASE_POSTGRES_PORT=5432
+      # - ZITADEL_DATABASE_POSTGRES_DATABASE=zitadel
+      # - ZITADEL_DATABASE_POSTGRES_USER_USERNAME=${POSTGRES_USER}
+      # - ZITADEL_DATABASE_POSTGRES_USER_PASSWORD=${POSTGRES_PASSWORD}
+      # - ZITADEL_DATABASE_POSTGRES_USER_SSL_MODE=disable
+      # - ZITADEL_DATABASE_POSTGRES_ADMIN_USERNAME=${POSTGRES_USER}
+      # - ZITADEL_DATABASE_POSTGRES_ADMIN_PASSWORD=${POSTGRES_PASSWORD}
+      # - ZITADEL_DATABASE_POSTGRES_ADMIN_SSL_MODE=disable
+      # - ZITADEL_EXTERNALSECURE=false
     volumes:
-      - ${DOCKER_DIR}/zitadel/config.yml:/config/config.yml:ro
+      - ./zitadel-config.yml:/zitadel-config.yml:ro
+      - ./zitadel-secrets.yml:/zitadel-secrets.yml:ro
+      - ./zitadel-init-steps.yml:/zitadel-init-steps.yml:ro
+      - ./zitadel-certs:/crdb-certs:ro
     networks:
       - proxy
     labels:
