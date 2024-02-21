@@ -2,7 +2,7 @@ Log:
   Level: info
 
 ExternalSecure: true
-ExternalDomain: zitadel.local.elotoja.com
+ExternalDomain: zitadel.elotoja.com
 ExternalPort: 443
 
 Database:

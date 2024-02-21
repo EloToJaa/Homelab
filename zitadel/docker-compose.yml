@@ -19,7 +19,7 @@ services:
     labels:
       traefik.enable: true
       traefik.http.routers.zitadel.entryPoints: https
-      traefik.http.routers.zitadel.rule: Host(`zitadel.local.${DOMAIN}`, `zitadel.${DOMAIN}`)
+      traefik.http.routers.zitadel.rule: Host(`zitadel.${DOMAIN}`)
       traefik.http.services.zitadel.loadbalancer.server.scheme: h2c
       traefik.http.services.zitadel.loadbalancer.passHostHeader: true
       traefik.http.services.zitadel.loadbalancer.server.port: 8080
