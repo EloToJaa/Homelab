@@ -1,0 +1,18 @@
+Log:
+  Level: info
+
+ExternalSecure: true
+ExternalDomain: zitadel.local.elotoja.com
+ExternalPort: 443
+
+Database:
+  postgres:
+    Host: postgres
+    Port: 5432
+    Database: zitadel
+    User:
+      SSL:
+        Mode: "disable"
+    Admin:
+      SSL:
+        Mode: "disable"
