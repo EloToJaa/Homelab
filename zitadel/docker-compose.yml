@@ -12,8 +12,6 @@ services:
       - ./zitadel-config.yml:/zitadel-config.yml:ro
       - ./zitadel-secrets.yml:/zitadel-secrets.yml:ro
       - ./zitadel-init-steps.yml:/zitadel-init-steps.yml:ro
-    ports:
-      - 8080:8080
     networks:
       - proxy
     labels:
