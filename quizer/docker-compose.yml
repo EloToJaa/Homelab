@@ -10,7 +10,6 @@ services:
     volumes:
       - ${DOCKER_DIR}/quizer/appsettings.json:/app/appsettings.Production.json
       - ${VOLUMES_DIR}/quizer/logs:/app/logs
-      - ${VOLUMES_DIR}/quizer/wwwroot:/app/wwwroot
     restart: unless-stopped
     networks:
       - proxy
