@@ -2,7 +2,7 @@ version: "3"
 services:
   quizer-api:
     image: ghcr.io/quizer-app/quizer:latest
-    user: "${USER_UID}:${USER_GID}"
+    # user: "${USER_UID}:${USER_GID}"
     container_name: quizer-api
     environment:
       - ASPNETCORE_ENVIRONMENT=Production
@@ -13,6 +13,8 @@ services:
     restart: unless-stopped
     networks:
       - proxy
+    ports:
+      - "5000:5000"
     labels:
       traefik.enable: true
       traefik.http.routers.quizer-api.entrypoints: https
