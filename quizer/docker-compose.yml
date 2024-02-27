@@ -5,9 +5,10 @@ services:
     container_name: quizer-api
     environment:
       - ASPNETCORE_ENVIRONMENT=Production
+      - ASPNETCORE_HTTP_PORTS=5000
+      - ASPNETCORE_URLS=http://+:5000
     volumes:
       - ${DOCKER_DIR}/quizer/appsettings.json:/app/appsettings.Production.json
-      - ${VOLUMES_DIR}/quizer/logs:/app/logs
     restart: unless-stopped
     networks:
       - proxy
