@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  semaphore:
+    image: semaphoreui/semaphore:latest
+    container_name: semaphore
+    environment:
+      SEMAPHORE_DB_DIALECT: postgres
+      SEMAPHORE_DB_HOST: postgres
+      SEMAPHORE_DB_PORT: 5432
+      SEMAPHORE_DB: semaphore
+      SEMAPHORE_DB_USER: ${POSTGRES_USER}
+      SEMAPHORE_DB_PASS: ${POSTGRES_PASSWORD}
+      SEMAPHORE_ADMIN_PASSWORD: Test123
+      SEMAPHORE_ADMIN_NAME: admin
+      SEMAPHORE_ADMIN_EMAIL: admin@localhost
+      SEMAPHORE_ADMIN: admin
+      TZ: ${TZ}
+    networks:
+      - proxy
+    labels:
+      traefik.enable: true
+      traefik.http.routers.ansible.entryPoints: https
+      traefik.http.routers.ansible.rule: Host(`ansible.local.${DOMAIN}`)
+      traefik.http.services.ansible.loadbalancer.server.port: 3000
+    restart: always
+
+networks:
+  proxy:
+    external: true
