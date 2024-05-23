@@ -13,7 +13,7 @@ http:
         - https
       service: nextcloud
     guacamole:
-      rule: Host(`remote.elotoja.com`, `remote.local.elotoja.com`)
+      rule: Host(`remote.local.elotoja.com`)
       entryPoints:
         - https
       middlewares:
@@ -22,7 +22,7 @@ http:
         - start-guacamole@file
       service: guacamole
     adminer:
-      rule: Host(`adminer.elotoja.com`, `adminer.local.elotoja.com`)
+      rule: Host(`adminer.local.elotoja.com`)
       entryPoints:
         - https
       middlewares:
@@ -38,7 +38,7 @@ http:
         - start-grafana@file
       service: grafana
     redis-commander:
-      rule: Host(`redis.elotoja.com`, `redis.local.elotoja.com`)
+      rule: Host(`redis.local.elotoja.com`)
       entryPoints:
         - https
       middlewares:
@@ -46,7 +46,7 @@ http:
         - start-redis-commander@file
       service: redis-commander
     mongo-express:
-      rule: Host(`mongo.elotoja.com`, `mongo.local.elotoja.com`)
+      rule: Host(`mongo.local.elotoja.com`)
       entryPoints:
         - https
       middlewares:
