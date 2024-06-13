@@ -98,7 +98,7 @@ experimental:
   plugins:
     traefik-themepark:
       moduleName: "github.com/packruler/traefik-themepark"
-      version: "v1.2.2"
+      version: "v1.4.0"
     sablier:
       moduleName: "github.com/acouvreur/sablier"
-      version: "v1.2.0"
+      version: "v1.6.1"
