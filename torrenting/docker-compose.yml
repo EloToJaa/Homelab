@@ -57,6 +57,16 @@ services:
     depends_on:
       - qbittorrent
     restart: always
+  
+  flaresolverr:
+    image: ghcr.io/flaresolverr/flaresolverr:latest
+    container_name: flaresolverr
+    network_mode: "service:qbittorrent"
+    environment:
+      - LOG_LEVEL=info
+    depends_on:
+      - qbittorrent
+    restart: always
 
   # jackett:
   #   image: lscr.io/linuxserver/jackett:latest
