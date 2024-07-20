@@ -2,7 +2,7 @@ version: '3'
 services:
   requestrr:
     container_name: requestrr
-    image: darkalfx/requestrr
+    image: thomst08/requestrr
     volumes:
       - ${VOLUMES_DIR}/requestrr:/root/config
     restart: unless-stopped
@@ -13,7 +13,6 @@ services:
       traefik.http.routers.requestrr.entryPoints: https
       traefik.http.routers.requestrr.rule: Host(`requestrr.local.${DOMAIN}`)
       traefik.http.services.requestrr.loadbalancer.server.port: 4545
-      traefik.http.routers.requestrr.middlewares: tp-requestrr@file
 
 networks:
   proxy:

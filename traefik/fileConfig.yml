@@ -7,20 +7,20 @@ http:
       service: pve
       middlewares:
         - pve-headers
-    nextcloud:
-      rule: Host(`cloud.elotoja.com`, `cloud.local.elotoja.com`)
-      entryPoints:
-        - https
-      service: nextcloud
-    guacamole:
-      rule: Host(`remote.local.elotoja.com`)
-      entryPoints:
-        - https
-      middlewares:
-        - auth@file
-        - tp-guacamole@file
-        - start-guacamole@file
-      service: guacamole
+    # nextcloud:
+    #   rule: Host(`cloud.elotoja.com`, `cloud.local.elotoja.com`)
+    #   entryPoints:
+    #     - https
+    #   service: nextcloud
+    # guacamole:
+    #   rule: Host(`remote.local.elotoja.com`)
+    #   entryPoints:
+    #     - https
+    #   middlewares:
+    #     - auth@file
+    #     - tp-guacamole@file
+    #     - start-guacamole@file
+    #   service: guacamole
     adminer:
       rule: Host(`adminer.local.elotoja.com`)
       entryPoints:
@@ -45,14 +45,14 @@ http:
         - auth@file
         - start-redis-commander@file
       service: redis-commander
-    mongo-express:
-      rule: Host(`mongo.local.elotoja.com`)
-      entryPoints:
-        - https
-      middlewares:
-        - auth@file
-        - start-mongo-express@file
-      service: mongo-express
+    # mongo-express:
+    #   rule: Host(`mongo.local.elotoja.com`)
+    #   entryPoints:
+    #     - https
+    #   middlewares:
+    #     - auth@file
+    #     - start-mongo-express@file
+    #   service: mongo-express
     wireguard:
       rule: Host(`wg.elotoja.com`, `wg.local.elotoja.com`)
       entryPoints:
@@ -245,12 +245,6 @@ http:
       plugin:
         traefik-themepark:
           app: guacamole
-          theme: organizr
-
-    tp-requestrr:
-      plugin:
-        traefik-themepark:
-          app: requestrr
           theme: organizr
 
 # Only use secure ciphers - https://ssl-config.mozilla.org/#server=traefik&version=2.6.0&config=intermediate&guideline=5.6
