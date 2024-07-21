@@ -18,7 +18,7 @@ services:
     labels:
       traefik.enable: true
       traefik.http.routers.shlink.entryPoints: https
-      traefik.http.routers.shlink.rule: Host(`l.${DOMAIN}`, `l.local.${DOMAIN}`)
+      traefik.http.routers.shlink.rule: Host(`l.${DOMAIN}`) || Host(`l.local.${DOMAIN}`)
 
 networks:
   proxy:
