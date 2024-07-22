@@ -37,7 +37,7 @@ http:
         - start-redis-commander@file
       service: redis-commander
     wireguard:
-      rule: Host(`wg.elotoja.com`, `wg.local.elotoja.com`)
+      rule: Host(`wg.elotoja.com`) || Host(`wg.local.elotoja.com`)
       entryPoints:
         - https
       middlewares:

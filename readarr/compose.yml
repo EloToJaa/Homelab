@@ -1,12 +1,11 @@
-version: "3"
 services:
   readarr:
     image: ghcr.io/linuxserver/readarr:nightly
     container_name: readarr
     environment:
-      - PUID=${USER_UID}
-      - PGID=${USER_GID}
-      - TZ=${TZ}
+      PUID: ${USER_UID}
+      PGID: ${USER_GID}
+      TZ: ${TZ}
     volumes:
       - ${VOLUMES_DIR}/readarr:/config
       - ${MEDIA_DIR}:/media

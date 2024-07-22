@@ -1,17 +1,16 @@
-version: '3'
 services:
   shlink:
     image: shlinkio/shlink:stable
     container_name: shlink
     environment:
-      - DEFAULT_DOMAIN=${SHLINK_DOMAIN}
-      - IS_HTTPS_ENABLED=true
-      - GEOLITE_LICENSE_KEY=${GEOLITE_LICENSE_KEY}
-      - DB_DRIVER=postgres
-      - DB_HOST=postgres
-      - DB_NAME=shlink
-      - DB_USER=${POSTGRES_USER}
-      - DB_PASSWORD=${POSTGRES_PASSWORD}
+      DEFAULT_DOMAIN: ${SHLINK_DOMAIN}
+      IS_HTTPS_ENABLED: true
+      GEOLITE_LICENSE_KEY: ${GEOLITE_LICENSE_KEY}
+      DB_DRIVER: postgres
+      DB_HOST: postgres
+      DB_NAME: shlink
+      DB_USER: ${POSTGRES_USER}
+      DB_PASSWORD: ${POSTGRES_PASSWORD}
     restart: unless-stopped
     networks:
       - proxy

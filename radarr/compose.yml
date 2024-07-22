@@ -1,13 +1,12 @@
-version: "3"
 services:
   radarr:
     image: ghcr.io/linuxserver/radarr
     container_name: radarr
     environment:
-      - PUID=${USER_UID}
-      - PGID=${USER_GID}
-      - TZ=${TZ}
-      - DOCKER_MODS=ghcr.io/gilbn/theme.park:radarr
+      PUID: ${USER_UID}
+      PGID: ${USER_GID}
+      TZ: ${TZ}
+      DOCKER_MODS: ghcr.io/gilbn/theme.park:radarr
     volumes:
       - ${VOLUMES_DIR}/radarr:/config
       - ${MEDIA_DIR}:/media
