@@ -3,10 +3,10 @@ services:
     image: lscr.io/linuxserver/tautulli:latest
     container_name: tautulli
     environment:
-      - PUID=${USER_UID}
-      - PGID=${USER_GID}
-      - TZ=${TZ}
-      - DOCKER_MODS=ghcr.io/gilbn/theme.park:tautulli
+      PUID: ${USER_UID}
+      PGID: ${USER_GID}
+      TZ: ${TZ}
+      DOCKER_MODS: ghcr.io/gilbn/theme.park:tautulli
     volumes:
       - ${VOLUMES_DIR}/tautulli:/config
     restart: unless-stopped

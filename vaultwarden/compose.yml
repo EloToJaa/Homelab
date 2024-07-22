@@ -3,10 +3,10 @@ services:
     image: vaultwarden/server:latest
     container_name: vaultwarden
     environment:
-      - SIGNUPS_ALLOWED=false
-      - INVITATIONS_ALLOWED=false
-      - WEBSOCKET_ENABLED=true
-      - ADMIN_TOKEN=${VAULT_TOKEN}
+      SIGNUPS_ALLOWED: false
+      INVITATIONS_ALLOWED: false
+      WEBSOCKET_ENABLED: true
+      ADMIN_TOKEN: ${VAULT_TOKEN}
     volumes:
       - ${VOLUMES_DIR}/vaultwarden:/data
     restart: unless-stopped

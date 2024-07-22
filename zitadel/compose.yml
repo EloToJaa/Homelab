@@ -4,8 +4,8 @@ services:
     container_name: zitadel
     command: start-from-init --config /zitadel-config.yml --config /zitadel-secrets.yml --steps /zitadel-init-steps.yml --masterkey "${ZITADEL_MASTERKEY}" --tlsMode external
     environment:
-      - ZITADEL_FIRSTINSTANCE_ORG_HUMAN_USERNAME=Admin1!@elotoja.com
-      - ZITADEL_FIRSTINSTANCE_ORG_HUMAN_PASSWORD=Password1!
+      ZITADEL_FIRSTINSTANCE_ORG_HUMAN_USERNAME: Admin1!@elotoja.com
+      ZITADEL_FIRSTINSTANCE_ORG_HUMAN_PASSWORD: Password1!
     volumes:
       - ./zitadel-config.yml:/zitadel-config.yml:ro
       - ./zitadel-secrets.yml:/zitadel-secrets.yml:ro

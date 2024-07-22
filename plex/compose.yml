@@ -4,10 +4,10 @@ services:
     container_name: plex
     network_mode: host
     environment:
-      - PUID=${USER_UID}
-      - PGID=${USER_GID}
-      - VERSION=docker
-      - PLEX_CLAIM=${PLEX_CLAIM}
+      PUID: ${USER_UID}
+      PGID: ${USER_GID}
+      VERSION: docker
+      PLEX_CLAIM: ${PLEX_CLAIM}
     volumes:
       - ${VOLUMES_DIR}/plex:/config
       - ${MEDIA_DIR}/:/media

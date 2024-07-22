@@ -3,16 +3,16 @@ services:
     container_name: qbittorrent
     image: ghcr.io/hotio/qbittorrent:latest
     environment:
-      - PUID=${USER_UID}
-      - PGID=${USER_GID}
-      - UMASK=002
-      - TZ=${TZ}
-      - VPN_ENABLED=true
-      - VPN_LAN_NETWORK=${LOCAL_NETWORK}
-      - VPN_CONF=wg0
-      - VPN_IP_CHECK_DELAY=5
-      - VPN_ADDITIONAL_PORTS=9696/tcp,9117/tcp
-      - PRIVOXY_ENABLED=false
+      PUID: ${USER_UID}
+      PGID: ${USER_GID}
+      UMASK: 002
+      TZ: ${TZ}
+      VPN_ENABLED: true
+      VPN_LAN_NETWORK: ${LOCAL_NETWORK}
+      VPN_CONF: wg0
+      VPN_IP_CHECK_DELAY: 5
+      VPN_ADDITIONAL_PORTS: 9696/tcp,9117/tcp
+      PRIVOXY_ENABLED: false
     volumes:
       - ${VOLUMES_DIR}/qbittorrent:/config
       - ${DOCKER_DIR}/torrenting/wg0.conf:/config/wireguard/wg0.conf
@@ -48,9 +48,9 @@ services:
     container_name: prowlarr
     network_mode: "service:qbittorrent"
     environment:
-      - PUID=${USER_UID}
-      - PGID=${USER_GID}
-      - TZ=${TZ}
+      PUID: ${USER_UID}
+      PGID: ${USER_GID}
+      TZ: ${TZ}
     volumes:
       - ${VOLUMES_DIR}/prowlarr:/config
     depends_on:
@@ -62,7 +62,7 @@ services:
     container_name: flaresolverr
     network_mode: "service:qbittorrent"
     environment:
-      - LOG_LEVEL=info
+      LOG_LEVEL: info
     depends_on:
       - qbittorrent
     restart: always
@@ -72,9 +72,9 @@ services:
   #   container_name: jackett
   #   network_mode: "service:qbittorrent"
   #   environment:
-  #     - PUID=${USER_UID}
-  #     - PGID=${USER_GID}
-  #     - TZ=${TZ}
+  #     PUID: ${USER_UID}
+  #     PGID: ${USER_GID}
+  #     TZ: ${TZ}
   #   volumes:
   #     - ${VOLUMES_DIR}/jackett:/config
   #   depends_on:

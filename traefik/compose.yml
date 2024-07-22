@@ -8,9 +8,9 @@ services:
       - 80:80
       - 443:443
     environment:
-      - TZ=${TZ}
-      - DOCKER_HOST=dockersocket
-      - CF_DNS_API_TOKEN=${API_TOKEN}
+      TZ: ${TZ}
+      DOCKER_HOST: dockersocket
+      CF_DNS_API_TOKEN: ${API_TOKEN}
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - ${USER_DIR}/cert/acme.json:/etc/traefik/acme.json

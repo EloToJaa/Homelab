@@ -3,9 +3,9 @@ services:
     image: postgres:15.4
     container_name: postgres
     environment:
-      - POSTGRES_USER=${POSTGRES_USER}
-      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
-      - POSTGRES_DB=authelia
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: authelia
     volumes:
       - ${VOLUMES_DIR}/postgres:/var/lib/postgresql/data
     ports:
@@ -18,9 +18,9 @@ services:
     image: postgres:latest
     container_name: postgres-tasker
     environment:
-      - POSTGRES_USER=${TASKER_DB_USER}
-      - POSTGRES_PASSWORD=${TASKER_DB_PASSWORD}
-      - POSTGRES_DB=tasker
+      POSTGRES_USER: ${TASKER_DB_USER}
+      POSTGRES_PASSWORD: ${TASKER_DB_PASSWORD}
+      POSTGRES_DB: tasker
     volumes:
       - ${VOLUMES_DIR}/tasker-db:/var/lib/postgresql/data
     ports:
