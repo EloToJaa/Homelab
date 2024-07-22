@@ -1,4 +1,3 @@
-version: "3"
 services:
   quizer-api:
     image: ghcr.io/quizer-app/quizer:latest

@@ -1,4 +1,3 @@
-version: '3'
 services:
   request:
     image: lscr.io/linuxserver/ombi:latest

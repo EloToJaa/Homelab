@@ -1,4 +1,3 @@
-version: '3'
 services:
   sablier:
     container_name: sablier

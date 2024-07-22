@@ -1,4 +1,3 @@
-version: '3'
 services:
   stats:
     image: lscr.io/linuxserver/tautulli:latest
