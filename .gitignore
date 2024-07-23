@@ -1,5 +1,5 @@
 **/.env
 **/appsettings.json
-zitadel/zitadel-secrets.yml
+zitadel-secrets.yml
 authelia/users_database.yml
 torrenting/wg0.conf
