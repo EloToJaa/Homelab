@@ -1,0 +1,20 @@
+services:
+  minecraft:
+    image: itzg/minecraft-server:java21-alpine
+    container_name: minecraft
+    tty: true
+    stdin_open: true
+    ports:
+      - 25565:25565
+    volumes:
+      - ${VOLUMES_DIR}/minecraft:/data
+    environment:
+      EULA: "TRUE"
+      TZ: ${TZ}
+      TYPE: "PAPER"
+      VERSION: "1.21"
+    restart: unless-stopped
+
+networks:
+  proxy:
+    external: true
