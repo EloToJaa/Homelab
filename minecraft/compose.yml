@@ -14,7 +14,3 @@ services:
       TYPE: "PAPER"
       VERSION: "1.21"
     restart: unless-stopped
-
-networks:
-  proxy:
-    external: true
