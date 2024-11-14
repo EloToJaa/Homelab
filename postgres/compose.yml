@@ -14,20 +14,21 @@ services:
     networks:
       - proxy
 
-  postgres-tasker:
-    image: postgres:latest
-    container_name: postgres-tasker
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: pgadmin
     environment:
-      POSTGRES_USER: ${TASKER_DB_USER}
-      POSTGRES_PASSWORD: ${TASKER_DB_PASSWORD}
-      POSTGRES_DB: tasker
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
     volumes:
-      - ${VOLUMES_DIR}/tasker-db:/var/lib/postgresql/data
-    ports:
-      - 4321:5432
-    restart: always
+      - ${VOLUMES_DIR}/pgadmin:/var/lib/pgadmin
+    restart: unless-stopped
     networks:
       - proxy
+    labels:
+      traefik.enable: true
+      traefik.http.routers.pgadmin.entryPoints: https
+      traefik.http.routers.pgadmin.rule: Host(`pgadmin.local.${DOMAIN}`)
 
 networks:
   proxy:
