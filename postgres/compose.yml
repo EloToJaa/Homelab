@@ -21,7 +21,7 @@ services:
       PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
       PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
     volumes:
-      - ${VOLUMES_DIR}/pgadmin:/var/lib/pgadmin
+      - pgadmin-data:/var/lib/pgadmin
     restart: unless-stopped
     networks:
       - proxy
@@ -33,3 +33,6 @@ services:
 networks:
   proxy:
     external: true
+
+volumes:
+  pgadmin-data:
