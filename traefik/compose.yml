@@ -30,7 +30,7 @@ services:
     container_name: dockersocket
     image: tecnativa/docker-socket-proxy
     volumes:
-      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /run/user/${USER_UID}/docker.sock:/var/run/docker.sock:ro
     networks:
       - proxy
     environment:
@@ -42,4 +42,3 @@ services:
 networks:
   proxy:
     external: true
-
