@@ -6,7 +6,6 @@ services:
       PUID: ${USER_UID}
       PGID: ${USER_GID}
       TZ: ${TZ}
-      DOCKER_MODS: ghcr.io/gilbn/theme.park:bazarr
     volumes:
       - ${VOLUMES_DIR}/bazarr:/config
       - ${MEDIA_DIR}:/media
