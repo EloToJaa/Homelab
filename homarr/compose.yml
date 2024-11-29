@@ -6,7 +6,7 @@ services:
       - ${VOLUMES_DIR}/homarr/configs:/app/data/configs
       - ${VOLUMES_DIR}/homarr/icons:/app/public/icons
       - ${VOLUMES_DIR}/homarr/data:/data
-      - /var/run/docker.sock:/var/run/docker.sock
+      - /run/user/${USER_UID}/docker.sock:/var/run/docker.sock
     networks:
       - proxy
     labels:

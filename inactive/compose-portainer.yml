@@ -5,7 +5,7 @@ services:
     networks:
       - proxy
     volumes:
-      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /run/user/${USER_UID}/docker.sock:/var/run/docker.sock:ro
       - ${VOLUMES_DIR}/portainer:/data
     labels:
       traefik.enable: true
@@ -17,3 +17,4 @@ services:
 networks:
   proxy:
     external: true
+

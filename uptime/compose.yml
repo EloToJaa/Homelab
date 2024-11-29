@@ -4,7 +4,7 @@ services:
     container_name: uptime
     volumes:
       - ${VOLUMES_DIR}/uptime:/app/data
-      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /run/user/${USER_UID}/docker.sock:/var/run/docker.sock:ro
     security_opt:
       - no-new-privileges:true
     restart: unless-stopped
@@ -17,3 +17,4 @@ services:
 networks:
   proxy:
     external: true
+
