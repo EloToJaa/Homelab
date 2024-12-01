@@ -48,7 +48,7 @@ access_control:
   default_policy: bypass
   rules:
     - domain:
-        - "auth.elotoja.com"
+        - "auth.local.elotoja.com"
       policy: bypass
     - domain: "*.elotoja.com"
       policy: two_factor
