@@ -2,6 +2,7 @@ services:
   radarr:
     image: ghcr.io/linuxserver/radarr
     container_name: radarr
+    user: "1000:1000"
     environment:
       PUID: ${USER_UID}
       PGID: ${USER_GID}
