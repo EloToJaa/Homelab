@@ -1,0 +1,20 @@
+services:
+  atuin:
+    image: ghcr.io/atuinsh/atuin:latest
+    command: server start
+    volumes:
+      - "${VOLUMES_DIR}/atuin:/config"
+    ports:
+      - 8888:8888
+    environment:
+      ATUIN_HOST: "0.0.0.0"
+      ATUIN_OPEN_REGISTRATION: "true"
+      ATUIN_DB_URI: postgres://$ATUIN_DB_USERNAME:$ATUIN_DB_PASSWORD@postgres/$ATUIN_DB_NAME
+      RUST_LOG: info,atuin_server=debug
+    networks:
+      - proxy
+    restart: always
+
+networks:
+  proxy:
+    external: true
