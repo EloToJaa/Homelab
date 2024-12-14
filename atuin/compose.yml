@@ -1,6 +1,7 @@
 services:
   atuin:
     image: ghcr.io/atuinsh/atuin:latest
+    container_name: atuin
     command: server start
     volumes:
       - "${VOLUMES_DIR}/atuin:/config"
