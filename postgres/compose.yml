@@ -32,6 +32,7 @@ services:
 
   pgbackups:
     image: prodrigestivill/postgres-backup-local
+    container_name: pgbackups
     user: postgres:postgres
     volumes:
       - /mnt/Backups/postgres:/backups
