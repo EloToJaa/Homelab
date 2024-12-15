@@ -30,6 +30,26 @@ services:
       traefik.http.routers.pgadmin.entryPoints: https
       traefik.http.routers.pgadmin.rule: Host(`pgadmin.local.${DOMAIN}`)
 
+  pgbackups:
+    image: prodrigestivill/postgres-backup-local
+    user: postgres:postgres
+    volumes:
+      - /mnt/Backups/postgres:/backups
+    depends_on:
+      - postgres
+    environment:
+      - POSTGRES_DB=postgres,elotoja,atuin,authelia,bazarr,radarr-main,semaphore,shlink,sonarr-main
+      - POSTGRES_HOST=postgres
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - SCHEDULE=@daily
+      - BACKUP_ON_START=TRUE
+      - BACKUP_KEEP_DAYS=7
+      - BACKUP_KEEP_WEEKS=4
+      - BACKUP_KEEP_MONTHS=6
+      - HEALTHCHECK_PORT=8080
+    restart: always
+
 networks:
   proxy:
     external: true
