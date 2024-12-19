@@ -3,7 +3,7 @@ services:
     image: jellyfin/jellyfin
     container_name: jellyfin
     group_add:
-      - "109"
+      - ${RENDER_GID}
     environment:
       TZ: ${TZ}
       PUID: ${USER_UID}
