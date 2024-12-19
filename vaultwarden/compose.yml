@@ -7,6 +7,7 @@ services:
       INVITATIONS_ALLOWED: false
       WEBSOCKET_ENABLED: true
       ADMIN_TOKEN: ${VAULT_TOKEN}
+      DATABASE_URL: postgresql://${PG_VAULTWARDEN_USER}:${PG_VAULTWARDEN_PASSWORD}@postgres:5432/vaultwarden
     volumes:
       - ${VOLUMES_DIR}/vaultwarden:/data
     restart: unless-stopped
@@ -15,7 +16,8 @@ services:
     labels:
       traefik.enable: true
       traefik.http.routers.vaultwarden.entryPoints: https
-    
+
 networks:
   proxy:
     external: true
+
