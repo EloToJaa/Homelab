@@ -10,9 +10,12 @@ services:
       - ${VOLUMES_DIR}/postgres:/var/lib/postgresql/data
     ports:
       - 5432:5432
+    expose:
+      - 5432
     restart: always
     networks:
-      - proxy
+      proxy:
+        ipv4_address: 172.18.1.10
 
   pgadmin:
     image: dpage/pgadmin4:latest
@@ -39,7 +42,7 @@ services:
     depends_on:
       - postgres
     environment:
-      - POSTGRES_DB=postgres,elotoja,atuin,authelia,bazarr,radarr-main,semaphore,shlink,sonarr-main
+      - POSTGRES_DB=postgres,elotoja,atuin,authelia,bazarr,radarr-main,semaphore,shlink,sonarr-main,prowlarr-main
       - POSTGRES_HOST=postgres
       - POSTGRES_USER=${POSTGRES_USER}
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
