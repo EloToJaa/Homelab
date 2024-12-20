@@ -40,7 +40,7 @@ services:
     depends_on:
       - postgres
     environment:
-      - POSTGRES_DB=postgres,elotoja,atuin,authelia,bazarr,radarr-main,semaphore,shlink,sonarr-main,prowlarr-main,vaultwarden
+      - POSTGRES_DB=postgres,elotoja,atuin,authelia,bazarr,radarr-main,semaphore,shlink,sonarr-main,prowlarr-main,vaultwarden,jellyseerr
       - POSTGRES_HOST=postgres
       - POSTGRES_USER=${POSTGRES_USER}
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}

@@ -1,9 +1,18 @@
 services:
   jellyseerr:
-    image: fallenbagel/jellyseerr:latest
+    image: fallenbagel/jellyseerr:develop
     container_name: jellyseerr
     environment:
-      TZ: ${TZ}
+      TZ: "${TZ}"
+      LOG_LEVEL: "info"
+      DB_TYPE: "postgres"
+      DB_HOST: "postgres"
+      DB_PORT: "5432"
+      DB_USER: "${PG_JELLYSEERR_USER}"
+      DB_PASS: "${PG_JELLYSEERR_PASSWORD}"
+      DB_NAME: "jellyseerr"
+      DB_LOG_QUERIES: "false"
+      DB_USE_SSL: "false"
     volumes:
       - ${VOLUMES_DIR}/jellyseerr:/app/config
     restart: unless-stopped
