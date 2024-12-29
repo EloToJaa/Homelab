@@ -9,7 +9,7 @@ services:
     volumes:
       - ${VOLUMES_DIR}/sonarr:/config
       - ${MEDIA_DIR}:/media
-    restart: unless-stopped
+    restart: always
     networks:
       proxy:
         ipv4_address: 172.18.1.2

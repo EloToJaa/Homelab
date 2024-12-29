@@ -9,7 +9,7 @@ services:
     volumes:
       - ${VOLUMES_DIR}/bazarr:/config
       - ${MEDIA_DIR}:/media
-    restart: unless-stopped
+    restart: always
     networks:
       - proxy
     labels:
