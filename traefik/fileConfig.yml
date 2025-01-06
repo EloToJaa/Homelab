@@ -84,7 +84,7 @@ http:
     # Authelia guard
     auth:
       forwardauth:
-        address: http://auth:9091/api/verify?rd=https://auth.elotoja.com/ # replace auth with your authelia container name
+        address: http://auth:9091/api/verify?rd=https://auth.local.elotoja.com/ # replace auth with your authelia container name
         trustForwardHeader: true
         authResponseHeaders:
           - Remote-User
