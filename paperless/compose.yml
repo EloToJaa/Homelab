@@ -21,6 +21,8 @@ services:
       PAPERLESS_TIKA_ENABLED: 1
       PAPERLESS_TIKA_GOTENBERG_ENDPOINT: http://gotenberg:3000
       PAPERLESS_TIKA_ENDPOINT: http://tika:9998
+    networks:
+      - proxy
     labels:
       traefik.enable: true
       traefik.http.routers.paperless.entryPoints: https
@@ -37,11 +39,15 @@ services:
       - "gotenberg"
       - "--chromium-disable-javascript=true"
       - "--chromium-allow-list=file:///tmp/.*"
+    networks:
+      - proxy
 
   tika:
     image: docker.io/apache/tika:latest
     container_name: tika
     restart: unless-stopped
+    networks:
+      - proxy
 
 networks:
   proxy:
