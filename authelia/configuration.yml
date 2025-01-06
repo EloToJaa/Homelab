@@ -62,7 +62,7 @@ session:
   inactivity: 300
   domain: elotoja.com # Should match whatever your root protected domain is
   redis:
-    host: 192.168.0.32
+    host: redis
     port: 6379
     password: ENV
     database_index: 0
@@ -75,7 +75,7 @@ regulation:
 storage:
   encryption_key: ENV
   postgres:
-    host: 192.168.0.32
+    host: postgres
     port: 5432
     database: authelia
     schema: public
