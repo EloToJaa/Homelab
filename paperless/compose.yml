@@ -12,7 +12,7 @@ services:
       - ${VOLUMES_DIR}/paperless/export:/usr/src/paperless/export
       - ${VOLUMES_DIR}/paperless/consume:/usr/src/paperless/consume
     environment:
-      PAPERLESS_REDIS: redis://redis:${REDIS_PASSWORD}@redis:6379
+      PAPERLESS_REDIS: redis://:${REDIS_PASSWORD}@redis:6379
       PAPERLESS_DBENGINE: postgresql
       PAPERLESS_DBHOST: postgres
       PAPERLESS_DBNAME: paperless
