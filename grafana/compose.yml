@@ -2,12 +2,14 @@ services:
   grafana:
     image: grafana/grafana-oss:latest
     container_name: grafana
-    user: ${USER_UID}
     volumes:
-      - ${VOLUMES_DIR}/grafana:/var/lib/grafana
+      - grafana-data:/var/lib/grafana
     networks:
       - proxy
 
 networks:
   proxy:
     external: true
+
+volumes:
+  grafana-data:
