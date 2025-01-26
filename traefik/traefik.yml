@@ -9,6 +9,9 @@ api:
 serversTransport:
   insecureSkipVerify: true
 
+log:
+  filePath: "/var/log/traefik/traefik.log"
+
 entryPoints:
   # Not used in apps, but redirect everything from HTTP to HTTPS
   http:

@@ -14,6 +14,7 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - traefik-cert:/etc/traefik/cert/
+      - traefik-logs:/var/logs/traefik/
       - ${DOCKER_DIR}/traefik/traefik.yml:/etc/traefik/traefik.yml:ro
       - ${DOCKER_DIR}/traefik/fileConfig.yml:/etc/traefik/fileConfig.yml:ro
     labels:
@@ -41,6 +42,7 @@ services:
 
 volumes:
   traefik-cert:
+  traefik-logs:
 
 networks:
   proxy:
