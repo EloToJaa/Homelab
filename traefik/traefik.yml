@@ -84,8 +84,8 @@ providers:
 certificatesResolvers:
   letsencrypt:
     acme:
-      email: lukaszbudziak122@gmail.com # change to your provider account email address.
-      storage: /etc/traefik/acme.json
+      email: elotoja@protonmail.com
+      storage: /etc/traefik/cert/acme.json
       dnsChallenge:
         provider: cloudflare
         # Used to make sure the dns challenge is propagated to the rights dns servers
@@ -97,7 +97,7 @@ experimental:
   plugins:
     traefik-themepark:
       moduleName: "github.com/packruler/traefik-themepark"
-      version: "v1.4.0"
+      version: "v1.4.2"
     sablier:
       moduleName: "github.com/acouvreur/sablier"
-      version: "v1.6.1"
+      version: "v1.8.0"
