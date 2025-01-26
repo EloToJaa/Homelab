@@ -11,8 +11,6 @@ services:
       - /etc/localtime:/etc/localtime:ro
     env_file:
       - .env
-    ports:
-      - "2283:2283"
     depends_on:
       - redis
       - database
@@ -25,7 +23,7 @@ services:
     labels:
       traefik.enable: true
       traefik.http.routers.immich.entryPoints: https
-      traefik.http.routers.immich.rule: Host(`photos.local.${DOMAIN}`)
+      traefik.http.routers.immich.rule: Host(`photos.local.${DOMAIN}`) || Host(`photos.server.${DOMAIN}`)
       traefik.http.services.immich.loadbalancer.server.port: 2283
 
   immich-machine-learning:

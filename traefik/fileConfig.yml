@@ -7,21 +7,8 @@ http:
       service: pve
       middlewares:
         - pve-headers
-    nextcloud:
-      rule: Host(`cloud.local.elotoja.com`)
-      entryPoints:
-        - https
-      service: nextcloud
-    adminer:
-      rule: Host(`adminer.local.elotoja.com`)
-      entryPoints:
-        - https
-      middlewares:
-        - auth@file
-        - start-adminer@file
-      service: adminer
     grafana:
-      rule: Host(`grafana.local.elotoja.com`)
+      rule: Host(`grafana.local.elotoja.com`) || Host(`grafana.server.elotoja.com`)
       entryPoints:
         - https
       middlewares:
@@ -29,20 +16,13 @@ http:
         - start-grafana@file
       service: grafana
     redis-commander:
-      rule: Host(`redis.local.elotoja.com`)
+      rule: Host(`redis.local.elotoja.com`) || Host(`redis.server.elotoja.com`)
       entryPoints:
         - https
       middlewares:
         - auth@file
         - start-redis-commander@file
       service: redis-commander
-    wireguard:
-      rule: Host(`wg.elotoja.com`) || Host(`wg.local.elotoja.com`)
-      entryPoints:
-        - https
-      middlewares:
-        - auth@file
-      service: wireguard
 
   services:
     pve:

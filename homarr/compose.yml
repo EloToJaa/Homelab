@@ -12,7 +12,7 @@ services:
     labels:
       traefik.enable: true
       traefik.http.routers.homarr.entryPoints: https
-      traefik.http.routers.homarr.rule: Host(`local.${DOMAIN}`) || Host(`home.local.${DOMAIN}`)
+      traefik.http.routers.homarr.rule: Host(`home.server.${DOMAIN}`) || Host(`home.local.${DOMAIN}`)
       traefik.http.routers.homarr.service: homarr
       traefik.http.services.homarr.loadbalancer.server.port: 7575
     restart: unless-stopped

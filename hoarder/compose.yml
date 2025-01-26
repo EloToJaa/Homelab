@@ -18,7 +18,7 @@ services:
     labels:
       traefik.enable: true
       traefik.http.routers.hoarder.entryPoints: https
-      traefik.http.routers.hoarder.rule: Host(`hoarder.local.${DOMAIN}`)
+
   chrome:
     image: gcr.io/zenika-hub/alpine-chrome:123
     container_name: chrome
@@ -32,6 +32,7 @@ services:
       - --hide-scrollbars
     networks:
       - hoarder
+
   meilisearch:
     image: getmeili/meilisearch:v1.11.1
     container_name: meilisearch

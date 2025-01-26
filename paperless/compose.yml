@@ -27,7 +27,7 @@ services:
     labels:
       traefik.enable: true
       traefik.http.routers.paperless.entryPoints: https
-      traefik.http.routers.paperless.rule: Host(`docs.local.${DOMAIN}`)
+      traefik.http.routers.paperless.rule: Host(`docs.local.${DOMAIN}`) || Host(`docs.server.${DOMAIN}`)
       traefik.http.services.paperless.loadbalancer.server.port: 8000
 
   gotenberg:

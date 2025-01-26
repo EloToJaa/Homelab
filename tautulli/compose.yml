@@ -14,9 +14,7 @@ services:
     labels:
       traefik.enable: true
       traefik.http.routers.tautulli.entryPoints: https
-      traefik.http.routers.tautulli.rule: Host(`stats.local.${DOMAIN}`)
 
 networks:
   proxy:
     external: true
-

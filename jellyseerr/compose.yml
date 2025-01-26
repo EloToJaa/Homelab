@@ -21,7 +21,7 @@ services:
     labels:
       traefik.enable: true
       traefik.http.routers.jellyseerr.entryPoints: https
-      traefik.http.routers.jellyseerr.rule: Host(`request.local.${DOMAIN}`) || Host(`request.${DOMAIN}`)
+      traefik.http.routers.jellyseerr.rule: Host(`request.local.${DOMAIN}`) || Host(`request.server.${DOMAIN}`) || Host(`request.${DOMAIN}`)
       traefik.http.routers.jellyseerr.service: jellyseerr
       traefik.http.services.jellyseerr.loadbalancer.server.port: 5055
 

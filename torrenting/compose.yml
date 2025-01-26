@@ -29,12 +29,12 @@ services:
     labels:
       traefik.enable: true
       traefik.http.routers.qbittorrent.entryPoints: https
-      traefik.http.routers.qbittorrent.rule: Host(`download.local.${DOMAIN}`)
+      traefik.http.routers.qbittorrent.rule: Host(`download.local.${DOMAIN}`) || Host(`download.server.${DOMAIN}`)
       traefik.http.routers.qbittorrent.service: qbittorrent
       traefik.http.services.qbittorrent.loadbalancer.server.port: 8080
 
       traefik.http.routers.prowlarr.entryPoints: https
-      traefik.http.routers.prowlarr.rule: Host(`prowlarr.local.${DOMAIN}`)
+      traefik.http.routers.prowlarr.rule: Host(`prowlarr.local.${DOMAIN}`) || Host(`prowlarr.server.${DOMAIN}`)
       traefik.http.routers.prowlarr.service: prowlarr
       traefik.http.services.prowlarr.loadbalancer.server.port: 9696
 
@@ -56,7 +56,7 @@ services:
     depends_on:
       - qbittorrent
     restart: always
-  
+
   flaresolverr:
     image: ghcr.io/flaresolverr/flaresolverr:latest
     container_name: flaresolverr

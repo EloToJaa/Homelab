@@ -29,7 +29,6 @@ services:
     labels:
       traefik.enable: true
       traefik.http.routers.pgadmin.entryPoints: https
-      traefik.http.routers.pgadmin.rule: Host(`pgadmin.local.${DOMAIN}`)
 
   pgbackups:
     image: prodrigestivill/postgres-backup-local

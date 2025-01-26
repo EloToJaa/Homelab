@@ -16,7 +16,6 @@ services:
     labels:
       traefik.enable: true
       traefik.http.routers.radarr.entryPoints: https
-      traefik.http.routers.radarr.rule: Host(`radarr.local.${DOMAIN}`)
 
 networks:
   proxy:

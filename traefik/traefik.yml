@@ -11,6 +11,9 @@ serversTransport:
 
 log:
   filePath: "/var/log/traefik/traefik.log"
+  level: INFO
+
+accessLog: {}
 
 entryPoints:
   # Not used in apps, but redirect everything from HTTP to HTTPS
@@ -51,11 +54,9 @@ entryPoints:
   https:
     address: :443
     forwardedHeaders:
-      # Reuse list of Cloudflare Trusted IP's above for HTTPS requests
       trustedIPs: *trustedIps
     http:
       tls:
-        # Generate a wildcard domain certificate
         certResolver: letsencrypt
         domains:
           - main: elotoja.com
@@ -69,18 +70,13 @@ entryPoints:
 
 providers:
   providersThrottleDuration: 2s
-
-  # File provider for connecting things that are outside of docker / defining middleware
   file:
     filename: /etc/traefik/fileConfig.yml
     watch: true
-
-  # Docker provider for connecting all apps that are inside of the docker network
   docker:
     watch: true
     network: proxy # Add Your Docker Network Name Here
-    # Default host rule to containername.domain.example
-    defaultRule: 'Host(`{{ index .Labels "com.docker.compose.service"}}.elotoja.com`) || Host(`{{ index .Labels "com.docker.compose.service"}}.local.elotoja.com`)'
+    defaultRule: 'Host(`{{ index .Labels "com.docker.compose.service"}}.elotoja.com`) || Host(`{{ index .Labels "com.docker.compose.service"}}.local.elotoja.com`) || Host(`{{ index .Labels "com.docker.compose.service"}}.server.elotoja.com`)'
     exposedByDefault: false
     endpoint: "tcp://dockersocket:2375"
 
@@ -91,7 +87,6 @@ certificatesResolvers:
       storage: /etc/traefik/cert/acme.json
       dnsChallenge:
         provider: cloudflare
-        # Used to make sure the dns challenge is propagated to the rights dns servers
         resolvers:
           - "1.1.1.1:53"
           - "1.0.0.1:53"

@@ -16,7 +16,6 @@ services:
     labels:
       traefik.enable: true
       traefik.http.routers.atuin.entryPoints: https
-      traefik.http.routers.atuin.rule: Host(`atuin.local.${DOMAIN}`)
       traefik.http.routers.atuin.service: atuin
       traefik.http.services.atuin.loadbalancer.server.port: 8888
 
