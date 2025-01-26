@@ -58,7 +58,7 @@ entryPoints:
           - main: elotoja.com
             sans:
               - "*.elotoja.com"
-              - "*.zitadel.elotoja.com"
+              - "*.server.elotoja.com"
               - "*.local.elotoja.com"
       middlewares:
         - securityHeaders@file
