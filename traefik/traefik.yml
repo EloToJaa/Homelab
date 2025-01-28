@@ -11,7 +11,7 @@ serversTransport:
 
 log:
   filePath: "/var/log/traefik/traefik.log"
-  level: INFO
+  level: DEBUG
 
 accessLog: {}
 

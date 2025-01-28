@@ -30,14 +30,6 @@ http:
         servers:
           - url: https://192.168.0.30:8006
         passHostHeader: true
-    nextcloud:
-      loadBalancer:
-        servers:
-          - url: https://192.168.0.42
-    adminer:
-      loadBalancer:
-        servers:
-          - url: "http://adminer:8080"
     grafana:
       loadBalancer:
         servers:
@@ -46,10 +38,6 @@ http:
       loadBalancer:
         servers:
           - url: "http://redis-commander:8081"
-    wireguard:
-      loadBalancer:
-        servers:
-          - url: "http://192.168.0.20:51821"
 
   ## MIDDLEWARES ##
   middlewares:
@@ -120,18 +108,6 @@ http:
         customFrameOptionsValue: SAMEORIGIN
         customRequestHeaders:
           X-Forwarded-Proto: https
-
-    start-adminer:
-      plugin:
-        sablier:
-          dynamic:
-            displayName: "adminer"
-            refreshFrequency: 5s
-            showDetails: "true"
-            theme: shuffle
-          names: adminer
-          sablierUrl: http://sablier:10000
-          sessionDuration: 1h
 
     start-grafana:
       plugin:
