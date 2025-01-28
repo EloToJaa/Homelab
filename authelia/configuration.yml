@@ -24,7 +24,7 @@ server:
     write: 4096
 
 log:
-  level: debug
+  level: info
 
 totp:
   issuer: elotoja.com #your authelia top-level domain
@@ -48,7 +48,7 @@ access_control:
   default_policy: bypass
   rules:
     - domain:
-        - "auth.local.elotoja.com"
+        - "auth.server.elotoja.com"
       policy: bypass
     - domain: "*.elotoja.com"
       policy: two_factor
