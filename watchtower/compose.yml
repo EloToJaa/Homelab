@@ -6,11 +6,12 @@ services:
       TZ: ${TZ}
       WATCHTOWER_CLEANUP: true
       WATCHTOWER_REMOVE_VOLUMES: true
-      WATCHTOWER_DEBUG: true
+      WATCHTOWER_DEBUG: false
       WATCHTOWER_INCLUDE_STOPPED: true
       WATCHTOWER_POLL_INTERVAL: 3600
+      WATCHTOWER_NOTIFICATION_REPORT: true
+      WATCHTOWER_NOTIFICATION_URL: ${NOTIFIARR_WATCHTOWER_API}
     volumes:
       - /run/user/${USER_UID}/docker.sock:/var/run/docker.sock
       - ${USER_DIR}/.docker/config.json:/config.json
     restart: unless-stopped
-
