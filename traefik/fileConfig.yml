@@ -49,7 +49,7 @@ http:
     dockge:
       loadBalancer:
         servers:
-          - url: "http://dockge:9000"
+          - url: "http://dockge:5001"
 
   ## MIDDLEWARES ##
   middlewares:
