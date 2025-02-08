@@ -6,14 +6,17 @@ services:
       DOCKGE_STACKS_DIR: /opt/stacks
     volumes:
       - /run/user/${USER_UID}/docker.sock:/var/run/docker.sock
-      - ${VOLUMES_DIR}/dockge:/app/data
+      - dockge:/app/data
       - ${DOCKER_DIR}:/opt/stacks
-    restart: unless-stopped
     networks:
       - proxy
-    labels:
-      traefik.enable: true
-      traefik.http.routers.dockge.entryPoints: https
+    # restart: unless-stopped
+    # labels:
+    #   traefik.enable: true
+    #   traefik.http.routers.dockge.entryPoints: https
+
+volumes:
+  dockge:
 
 networks:
   proxy:

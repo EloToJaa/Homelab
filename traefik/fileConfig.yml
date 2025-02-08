@@ -16,6 +16,22 @@ http:
         - auth@file
         - start-redis-commander@file
       service: redis-commander
+    portainer:
+      rule: Host(`portainer.local.elotoja.com`) || Host(`portainer.server.elotoja.com`)
+      entryPoints:
+        - https
+      middlewares:
+        - auth@file
+        - start-portainer@file
+      service: portainer
+    dockge:
+      rule: Host(`docker.local.elotoja.com`) || Host(`docker.server.elotoja.com`)
+      entryPoints:
+        - https
+      middlewares:
+        - auth@file
+        - start-dockge@file
+      service: dockge
 
   services:
     grafana:
@@ -26,6 +42,14 @@ http:
       loadBalancer:
         servers:
           - url: "http://redis-commander:8081"
+    portainer:
+      loadBalancer:
+        servers:
+          - url: "http://portainer:9000"
+    dockge:
+      loadBalancer:
+        servers:
+          - url: "http://dockge:9000"
 
   ## MIDDLEWARES ##
   middlewares:
@@ -83,20 +107,6 @@ http:
     gzip:
       compress: {}
 
-    pve-headers:
-      headers:
-        frameDeny: true
-        sslRedirect: true
-        browserXssFilter: true
-        contentTypeNosniff: true
-        forceSTSHeader: true
-        stsIncludeSubdomains: true
-        stsPreload: true
-        stsSeconds: 15552000
-        customFrameOptionsValue: SAMEORIGIN
-        customRequestHeaders:
-          X-Forwarded-Proto: https
-
     start-grafana:
       plugin:
         sablier:
@@ -118,6 +128,30 @@ http:
             showDetails: "true"
             theme: shuffle
           names: redis-commander
+          sablierUrl: http://sablier:10000
+          sessionDuration: 1h
+
+    start-portainer:
+      plugin:
+        sablier:
+          dynamic:
+            displayName: "portainer"
+            refreshFrequency: 5s
+            showDetails: "true"
+            theme: shuffle
+          names: portainer
+          sablierUrl: http://sablier:10000
+          sessionDuration: 1h
+
+    start-dockge:
+      plugin:
+        sablier:
+          dynamic:
+            displayName: "dockge"
+            refreshFrequency: 5s
+            showDetails: "true"
+            theme: shuffle
+          names: dockge
           sablierUrl: http://sablier:10000
           sessionDuration: 1h
 
