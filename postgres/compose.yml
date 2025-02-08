@@ -23,12 +23,12 @@ services:
       PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
     volumes:
       - pgadmin-data:/var/lib/pgadmin
-    restart: unless-stopped
     networks:
       - proxy
-    labels:
-      traefik.enable: true
-      traefik.http.routers.pgadmin.entryPoints: https
+    # restart: unless-stopped
+    # labels:
+    #   traefik.enable: true
+    #   traefik.http.routers.pgadmin.entryPoints: https
 
   pgbackups:
     image: prodrigestivill/postgres-backup-local

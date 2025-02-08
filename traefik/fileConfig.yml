@@ -32,6 +32,14 @@ http:
         - auth@file
         - start-dockge@file
       service: dockge
+    pgadmin:
+      rule: Host(`pgadmin.local.elotoja.com`) || Host(`pgadmin.server.elotoja.com`)
+      entryPoints:
+        - https
+      middlewares:
+        - auth@file
+        - start-pgadmin@file
+      service: pgadmin
 
   services:
     grafana:
@@ -50,6 +58,10 @@ http:
       loadBalancer:
         servers:
           - url: "http://dockge:5001"
+    pgadmin:
+      loadBalancer:
+        servers:
+          - url: "http://pgadmin:80"
 
   ## MIDDLEWARES ##
   middlewares:
@@ -152,6 +164,18 @@ http:
             showDetails: "true"
             theme: shuffle
           names: dockge
+          sablierUrl: http://sablier:10000
+          sessionDuration: 1h
+
+    start-pgadmin:
+      plugin:
+        sablier:
+          dynamic:
+            displayName: "pgadmin"
+            refreshFrequency: 5s
+            showDetails: "true"
+            theme: shuffle
+          names: pgadmin
           sablierUrl: http://sablier:10000
           sessionDuration: 1h
 
