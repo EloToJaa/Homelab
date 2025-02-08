@@ -19,7 +19,7 @@ services:
       - ${DOCKER_DIR}/traefik/fileConfig.yml:/etc/traefik/fileConfig.yml:ro
     labels:
       traefik.enable: true
-      traefik.http.routers.api.rule: Host(`proxy.${DOMAIN}`) || Host(`proxy.local.${DOMAIN}`) || Host(`proxy.server.${DOMAIN}`)
+      traefik.http.routers.api.rule: Host(`proxy.local.${DOMAIN}`) || Host(`proxy.server.${DOMAIN}`)
       traefik.http.routers.api.entryPoints: https
       traefik.http.routers.api.service: api@internal
       traefik.http.routers.api.middlewares: auth@file
