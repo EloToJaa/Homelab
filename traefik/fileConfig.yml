@@ -1,12 +1,5 @@
 http:
   routers:
-    pve:
-      rule: Host(`pve.local.elotoja.com`)
-      entryPoints:
-        - https
-      service: pve
-      middlewares:
-        - pve-headers
     grafana:
       rule: Host(`grafana.local.elotoja.com`) || Host(`grafana.server.elotoja.com`)
       entryPoints:
@@ -25,11 +18,6 @@ http:
       service: redis-commander
 
   services:
-    pve:
-      loadBalancer:
-        servers:
-          - url: https://192.168.0.30:8006
-        passHostHeader: true
     grafana:
       loadBalancer:
         servers:
