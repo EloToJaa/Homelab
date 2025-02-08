@@ -6,7 +6,7 @@ services:
       - proxy
     volumes:
       - /run/user/${USER_UID}/docker.sock:/var/run/docker.sock:ro
-      - ${VOLUMES_DIR}/portainer:/data
+      - portainer:/data
     labels:
       traefik.enable: true
       traefik.http.routers.portainer.entryPoints: https
@@ -14,7 +14,9 @@ services:
       traefik.http.routers.portainer.middlewares: auth@file
     restart: unless-stopped
 
+volumes:
+  portainer:
+
 networks:
   proxy:
     external: true
-
