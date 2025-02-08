@@ -11,6 +11,13 @@ services:
       DN_SONARR_0_NAME: sonarr
       DN_SONARR_0_URL: http://sonarr:8989
       DN_SONARR_0_API_KEY: ${SONARR_API}
+      DN_PROWLARR_0_NAME: prowlarr
+      DN_PROWLARR_0_URL: http://qbittorrent:8080
+      DN_PROWLARR_0_API_KEY: ${PROWLARR_API}
+      DN_QBIT_0_NAME: qbittorrent
+      DN_QBIT_0_URL: http://qbittorrent:9696
+      DN_QBIT_0_USER: ${QBIT_USER}
+      DN_QBIT_0_PASS: ${QBIT_PASS}
       DN_PLEX_URL: http://${IP}:32400
       DN_PLEX_TOKEN: ${PLEX_TOKEN}
       DN_TAUTULLI_NAME: tautulli
@@ -29,3 +36,4 @@ services:
 networks:
   proxy:
     external: true
+
