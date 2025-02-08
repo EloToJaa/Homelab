@@ -7,10 +7,10 @@ services:
       - gotenberg
       - tika
     volumes:
-      - ${VOLUMES_DIR}/paperless/data:/usr/src/paperless/data
+      - paperless-data:/usr/src/paperless/data
       - ${DATA_DIR}/docs:/usr/src/paperless/media
-      - ${VOLUMES_DIR}/paperless/export:/usr/src/paperless/export
-      - ${VOLUMES_DIR}/paperless/consume:/usr/src/paperless/consume
+      - paperless-export:/usr/src/paperless/export
+      - paperless-consume:/usr/src/paperless/consume
     environment:
       PAPERLESS_REDIS: redis://:${REDIS_PASSWORD}@redis:6379
       PAPERLESS_DBENGINE: postgresql
@@ -49,6 +49,11 @@ services:
     restart: unless-stopped
     networks:
       - proxy
+
+volumes:
+  paperless-consume:
+  paperless-data:
+  paperless-export:
 
 networks:
   proxy:
