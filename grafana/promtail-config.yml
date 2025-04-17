@@ -10,8 +10,7 @@ clients:
 
 scrape_configs:
   # local machine logs
-
-  - job_name: local
+  - job_name: system
     static_configs:
       - targets:
           - localhost
