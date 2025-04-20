@@ -1,7 +1,7 @@
 services:
   qbittorrent:
     container_name: qbittorrent
-    image: ghcr.io/hotio/qbittorrent:latest
+    image: ghcr.io/hotio/qbittorrent:legacy
     environment:
       PUID: ${USER_UID}
       PGID: ${USER_GID}
@@ -43,6 +43,9 @@ services:
       # traefik.http.routers.jackett.service: jackett
       # traefik.http.services.jackett.loadbalancer.server.port: 9117
 
+    logging:
+      driver: none
+
   prowlarr:
     image: lscr.io/linuxserver/prowlarr:latest
     container_name: prowlarr
@@ -56,6 +59,8 @@ services:
     depends_on:
       - qbittorrent
     restart: always
+    logging: # ADD THIS SECTION
+      driver: none
 
   flaresolverr:
     image: ghcr.io/flaresolverr/flaresolverr:latest
@@ -66,6 +71,8 @@ services:
     depends_on:
       - qbittorrent
     restart: always
+    logging: # ADD THIS SECTION
+      driver: none
 
   # jackett:
   #   image: lscr.io/linuxserver/jackett:latest
