@@ -1,7 +1,8 @@
 services:
   qbittorrent:
     container_name: qbittorrent
-    image: ghcr.io/hotio/qbittorrent:legacy
+    hostname: qbittorrent
+    image: ghcr.io/hotio/qbittorrent:release
     environment:
       PUID: ${USER_UID}
       PGID: ${USER_GID}
@@ -9,9 +10,12 @@ services:
       TZ: ${TZ}
       VPN_ENABLED: true
       VPN_LAN_NETWORK: ${LOCAL_NETWORK}
+      VPN_LAN_LEAK_ENABLED: false
+      VPN_FIREWALL_TYPE: auto
       VPN_CONF: wg0
       VPN_IP_CHECK_DELAY: 5
       VPN_ADDITIONAL_PORTS: 9696/tcp,9117/tcp
+      VPN_NAMESERVERS: 9.9.9.9
       PRIVOXY_ENABLED: false
     volumes:
       - ${VOLUMES_DIR}/qbittorrent:/config
